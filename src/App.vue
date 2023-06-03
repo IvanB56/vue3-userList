@@ -1,30 +1,51 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <navbar/>
   <router-view/>
+  <popup-image v-if="$store.state.bigImageSrc !== ''"  :src="$store.state.bigImageSrc"/>
 </template>
 
+<script>
+import Navbar from "@/components/Navbar";
+import PopupImage from "@/components/PopupImage";
+
+export default {
+  components: {PopupImage, Navbar}
+}
+</script>
+
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
 }
 
-nav {
-  padding: 30px;
+html, body {
+  height: 100%;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+body {
+  background-color: #e5eff8;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+#app {
+  background-color: #fff;
+  max-width: 991px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  #app {
+    margin: 0;
   }
 }
 </style>
